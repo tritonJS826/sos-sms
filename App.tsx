@@ -1,10 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import VolumeControl, { VolumeControlEvents } from "react-native-volume-control";
+// это по идее надо подключить так: https://www.npmjs.com/package/react-native-volume-control
+// тогда все заработает
 
-export default function App() {
+import { header, howToUse } from './src/constants/mainPageContent';
+
+const App = () => {
+  const [volume, setVolume] = useState(0);
+
+
+  const volEvent = () => VolumeControlEvents.addListener(
+      "VolumeChanged",
+      volumeEvent,
+    );
+
+  const volumeEvent = (event: any) => {
+    setVolume(event.volume);
+  };
+
+  useEffect(() => {
+    volEvent();
+    console.log(VolumeControl); // тут должен быть не null
+    // return volEvent.remove();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text>{header}</Text>
+      <Text>volume: {volume}</Text>
+      <Button title="help" onPress={() => { alert(howToUse) }} />
     </View>
   );
 }
@@ -17,3 +42,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
