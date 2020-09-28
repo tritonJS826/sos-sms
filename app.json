@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "sos-sms",
+    "slug": "sos-sms",
+    "version": "1.0.0",
+    "sdkVersion": "39.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "sos.sms"
+    },
+    "ios": {
+      "bundleIdentifier": "sos.sms"
+    }
+  }
+}
